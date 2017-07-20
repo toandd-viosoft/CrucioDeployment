@@ -1,0 +1,19 @@
+--- a/dats/remote_control.py
++++ b/dats/remote_control.py
+@@ -46,6 +46,7 @@ def ssh(user, ip, cmd):
+     """Execute ssh command"""
+     logging.debug("Command to execute over SSH: '%s'", cmd)
+     ssh_options = ""
++    ssh_options += "-tt "
+     ssh_options += "-o StrictHostKeyChecking=no "
+     ssh_options += "-o UserKnownHostsFile=/dev/null "
+     ssh_options += "-o LogLevel=error "
+@@ -164,7 +165,7 @@ class remote_system:
+         prox_cmd = "export TERM=xterm; export RTE_SDK=" + self._dpdk_dir + "; " \
+             + "export RTE_TARGET=" + self._dpdk_target + ";" \
+             + " cd " + self._prox_dir + "; make HW_DIRECT_STATS=y -j50; sudo " \
+-            + "./build/prox " + prox_args
++            + "screen -S validium ./build/prox " + prox_args
+         self._err = False
+         logging.debug("Starting PROX with command [%s]", prox_cmd)
+         thread.start_new_thread(ssh_check_quit, (self, self._user, self._ip, prox_cmd))
