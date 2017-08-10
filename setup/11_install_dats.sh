@@ -6,7 +6,8 @@ echo "Getting DATS for TG"
 # Get DATS
 cd /opt/crucio
 rm -rf DATS*
-git clone https://github.com/nvf-crucio/DATS
+#git clone https://github.com/nvf-crucio/DATS
+git clone https://github.com/toandd-viosoft/CDATS.git DATS
 cd DATS
 git checkout $DATS_VER
 
